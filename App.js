@@ -18,7 +18,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} options={{ headerTitle: props => <ImageHeader {...props} /> }} />
-        <Stack.Screen name="MyModal" component={DetailsEvent} />
+        <Stack.Screen name="detailEvent" component={DetailsEvent} options={{headerShown: false}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

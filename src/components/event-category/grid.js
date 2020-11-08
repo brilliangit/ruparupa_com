@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react'
-import { Text, View,FlatList } from 'react-native'
+import { Text, View, FlatList } from 'react-native'
 import EventItem from '../event';
 
 export default class Grid extends PureComponent {
     render() {
 
-        const { events, title } = this.props;
+        const { events, title, navigation } = this.props;
 
         return (
             <>
@@ -27,8 +27,8 @@ export default class Grid extends PureComponent {
                     data={events}
                     numColumns={2}
                     initialNumToRender={2}
-                    ItemSeparatorComponent={() => <View style={{ height:10 }} />}
-                    ListItemComponent={({ item }) => <EventItem event={item} isEvenView={true}/>}
+                    ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+                    ListItemComponent={({ item }) => <EventItem navigation={navigation} event={item} isEvenView={true} />}
                     keyExtractor={(_, index) => index.toString()}
                 />
             </>

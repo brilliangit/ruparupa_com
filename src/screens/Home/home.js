@@ -24,7 +24,7 @@ class Home extends PureComponent {
                         ListItemComponent={({ index, item }) =>
                             // index != lastIndex ?
                             //     <EventCategory events={item.events} title={item.title} /> :
-                                <Grid events={item.events} title={item.title} />
+                            <Grid navigation={this.props.navigation} events={item.events} title={item.title} />
                         }
                         keyExtractor={(_, index) => index.toString()}
                     />

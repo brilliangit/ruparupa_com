@@ -1,32 +1,43 @@
 import React, { PureComponent } from 'react';
-import { View, Text, Image, Dimensions } from "react-native";
+import { View, Text, Image, Dimensions, TouchableOpacity } from "react-native";
+// import { withNavigation } from 'react-navigation';
+class EventItem extends React.Component {
+    constructor(props) {
+        super(props);
 
-export default class EventItem extends PureComponent {
+        this.handleDetail = this.handleDetail.bind(this);
+    }
+    
+    handleDetail(param) {
+        this.props.navigation.push('detailEvent', param)
+    }
 
     render() {
         const { title, dayMonth, fullDate, image } = this.props.event,
             cardStyle = this.props.isEvenView ? { ...style.card, marginHorizontal: 4 } : style.card;
 
         return (
-            <View style={cardStyle}>
-                <Image
-                    style={style.image}
-                    resizeMode="cover"
-                    source={image} />
+            <TouchableOpacity onPress={() => this.handleDetail(this.props.event) }>
+                <View style={cardStyle}>
+                    <Image
+                        style={style.image}
+                        resizeMode="cover"
+                        source={image} />
 
-                <View style={style.dateCard}>
-                    <Text style={style.dateMonth}>Free</Text>
-                    <Text style={style.dateMonth}>{dayMonth.month}</Text>
-                    <Text style={{ fontWeight: 'bold' }}>{dayMonth.day}</Text>
-                </View>
+                    <View style={style.dateCard}>
+                        <Text style={style.dateMonth}>Free</Text>
+                        <Text style={style.dateMonth}>{dayMonth.month}</Text>
+                        <Text style={{ fontWeight: 'bold' }}>{dayMonth.day}</Text>
+                    </View>
 
-                <View style={{ padding: 12 }}>
-                    <Text
-                        numberOfLines={2}
-                        style={style.title}>{title}</Text>
-                    <Text style={style.dateTime}>{fullDate}</Text>
+                    <View style={{ padding: 12 }}>
+                        <Text
+                            numberOfLines={2}
+                            style={style.title}>{title}</Text>
+                        <Text style={style.dateTime}>{fullDate}</Text>
+                    </View >
                 </View >
-            </View >
+            </TouchableOpacity>
         )
     }
 }
@@ -68,4 +79,7 @@ const { width } = Dimensions.get('window'),
             fontWeight: 'bold'
 
         }
-    }
+    };
+
+// export default withNavigation(EventItem);
+export default EventItem;
